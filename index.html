@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brillance Châtre • Bijoux en Argent</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@400;500;600&display=swap');
+
+        body { font-family: 'Inter', system_ui, sans-serif; }
+        .logo-font { font-family: 'Playfair Display', serif; }
+
+        .hero-bg {
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.55)), 
+                        url('https://i.postimg.cc/pPzZytpM/Gemini-Generated-Image-j1hy1ej1hy1ej1hy.png') center/cover no-repeat fixed;
+            background-attachment: fixed;
+        }
+
+        .silver-button {
+            background: linear-gradient(90deg, #c0c0c0, #a8a8a8);
+            color: #1f2937;
+            box-shadow: 0 4px 15px rgba(192, 192, 192, 0.5);
+        }
+
+        .product-card {
+            transition: all 0.3s ease;
+        }
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1);
+        }
+
+        .product-img {
+            height: 280px;
+            object-fit: cover;
+        }
+
+        @media (max-width: 640px) {
+            .hero-logo { width: 220px !important; height: 220px !important; }
+            .product-img { height: 220px; }
+        }
+    </style>
+</head>
+<body class="bg-zinc-50 scroll-smooth">
+
+    <!-- NAVBAR -->
+    <nav class="bg-white border-b sticky top-0 z-50 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <img src="https://i.postimg.cc/xXLWm86w/Gemini-Generated-Image-2026-04-03-at-14-33-12.png" 
+                     alt="Brillance Châtre" class="w-12 h-12 rounded-full object-contain border border-zinc-200 shadow-inner">
+                <div>
+                    <h1 class="logo-font text-3xl font-bold tracking-tighter text-zinc-800">BRILLANCE</h1>
+                    <p class="text-zinc-600 font-medium tracking-widest text-sm">CHÂTRE</p>
+                </div>
+            </div>
+
+            <div class="hidden md:flex gap-8 text-sm font-medium text-zinc-700">
+                <a onclick="navigateTo('home')" class="cursor-pointer hover:text-zinc-500">Accueil</a>
+                <a onclick="navigateTo('shop')" class="cursor-pointer hover:text-zinc-500">Boutique</a>
+                <a onclick="navigateTo('about')" class="cursor-pointer hover:text-zinc-500">Notre Histoire</a>
+                <a href="https://bc.silverware.casa" target="_blank" class="cursor-pointer hover:text-zinc-500">bc.silverware.casa</a>
+            </div>
+
+            <div class="flex items-center gap-4">
+                <button onclick="showCart()" class="relative flex items-center gap-2 bg-white border border-zinc-200 px-5 py-2.5 rounded-3xl text-sm font-medium">
+                    <i class="fa-solid fa-bag-shopping"></i>
+                    <span id="cart-count" class="absolute -top-1 -right-1 bg-zinc-800 text-white text-[10px] w-5 h-5 rounded-full flex items-center justify-center font-bold">0</span>
+                </button>
+                <button onclick="toggleMobileMenu()" class="md:hidden text-2xl text-zinc-700">☰</button>
+            </div>
+        </div>
+
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t px-6 py-6 space-y-6 text-lg text-zinc-700">
+            <a onclick="navigateTo('home');toggleMobileMenu()" class="block">🏠 Accueil</a>
+            <a onclick="navigateTo('shop');toggleMobileMenu()" class="block">💎 Boutique</a>
+            <a onclick="navigateTo('about');toggleMobileMenu()" class="block">📖 Notre Histoire</a>
+            <a href="https://bc.silverware.casa" target="_blank" class="block">🌐 Site Officiel</a>
+            <a onclick="showContact();toggleMobileMenu()" class="block">✉️ Contact</a>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section id="home" class="hero-bg min-h-screen flex items-center py-12 text-white">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <img src="https://i.postimg.cc/xXLWm86w/Gemini-Generated-Image-2026-04-03-at-14-33-12.png" 
+                 alt="Brillance Châtre" 
+                 class="hero-logo mx-auto w-64 h-64 md:w-96 md:h-96 rounded-full object-contain shadow-2xl border-8 border-white/80 mb-8">
+
+            <h1 class="logo-font text-5xl md:text-7xl font-bold tracking-tighter text-white">BRILLANCE CHÂTRE</h1>
+            <p class="mt-3 text-xl md:text-2xl opacity-90">Bijoux en argent fin • Artisanat marocain d'exception</p>
+
+            <div class="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
+                <button onclick="navigateTo('shop')" 
+                        class="silver-button text-lg font-semibold py-4 px-10 rounded-3xl flex items-center justify-center gap-3">
+                    <i class="fa-solid fa-gem"></i> DÉCOUVRIR LA COLLECTION
+                </button>
+                <a href="https://bc.silverware.casa" target="_blank" 
+                   class="border-2 border-white/70 text-lg py-4 px-8 rounded-3xl flex items-center justify-center gap-2 hover:bg-white/10">
+                    Visiter le site
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- SHOP SECTION -->
+    <section id="shop" class="max-w-7xl mx-auto px-4 py-16">
+        <div class="mb-10">
+            <span class="uppercase text-xs tracking-widest text-zinc-500">Notre Collection Exclusive</span>
+            <h2 class="text-4xl font-semibold text-zinc-800">Bracelets en Argent</h2>
+        </div>
+        <input id="search-input" onkeyup="filterProducts()" 
+               class="w-full max-w-md mb-8 px-6 py-4 border border-zinc-200 rounded-3xl focus:border-zinc-400" 
+               placeholder="Rechercher un bracelet...">
+        <div id="products-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"></div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="bg-zinc-900 text-white py-20">
+        <div class="max-w-3xl mx-auto px-4 text-center">
+            <h2 class="text-4xl font-semibold mb-6">Fabriqué avec passion à Casablanca</h2>
+            <p class="text-zinc-300 text-lg">Chaque pièce est réalisée à la main en argent 925. Inspirée par l'héritage marocain et l'élégance moderne.</p>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-zinc-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <img src="https://i.postimg.cc/xXLWm86w/Gemini-Generated-Image-2026-04-03-at-14-33-12.png" 
+                 alt="Brillance Châtre" class="w-14 h-14 mx-auto rounded-full mb-6 border border-zinc-700">
+
+            <p class="text-zinc-400 mb-2">Suivez-nous</p>
+            
+            <div class="flex justify-center gap-10 text-4xl mb-8">
+                <a href="https://www.instagram.com/brillance_chatre" target="_blank" 
+                   class="text-zinc-400 hover:text-pink-400 transition-colors">
+                    <i class="fa-brands fa-instagram"></i>
+                </a>
+                <a href="https://wa.me/212720114319" target="_blank" 
+                   class="text-zinc-400 hover:text-green-400 transition-colors">
+                    <i class="fa-brands fa-whatsapp"></i>
+                </a>
+            </div>
+
+            <a href="https://bc.silverware.casa" target="_blank" class="text-xl font-medium underline text-zinc-300">bc.silverware.casa</a>
+            
+            <p class="text-xs text-zinc-500 mt-10">© 2026 Brillance Châtre • Casablanca, Maroc</p>
+        </div>
+    </footer>
+
+    <!-- CART MODAL -->
+    <div id="cart-modal" class="hidden fixed inset-0 bg-black/70 z-50 flex items-end md:items-center justify-center">
+        <div class="bg-white w-full max-w-lg rounded-t-3xl md:rounded-3xl max-h-[90vh] overflow-hidden flex flex-col">
+            <div class="p-6 border-b flex justify-between items-center">
+                <h2 class="text-2xl font-semibold text-zinc-800">Votre Panier</h2>
+                <button onclick="hideCart()" class="text-3xl text-zinc-400">×</button>
+            </div>
+            <div id="cart-items" class="flex-1 p-6 overflow-auto space-y-6"></div>
+            <div class="p-6 border-t">
+                <div class="flex justify-between text-xl font-medium mb-6 text-zinc-800">
+                    <span>Total</span>
+                    <span id="cart-total" class="font-bold">0 MAD</span>
+                </div>
+                <button onclick="sendOrderToWhatsApp()" 
+                        class="silver-button w-full py-5 rounded-3xl text-lg font-semibold flex items-center justify-center gap-3">
+                    <i class="fa-solid fa-paper-plane"></i> 
+                    ENVOYER LA COMMANDE VIA WHATSAPP
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let products = [
+            {
+                id: 1,
+                name: "Bracelet rivière argent rhodié oxydes de zirconium",
+                price: 350,
+                desc: "Argent 925 • Élégance intemporelle",
+                img: "https://i.postimg.cc/ZCqC93cg/Gemini-Generated-Image-2026-04-03-at-14-33-12.png"
+            },
+            {
+                id: 2,
+                name: "Bracelet « Trio éclat » argent 925 zircon baguette",
+                price: 220,
+                desc: "Design moderne et scintillant",
+                img: "https://i.postimg.cc/YhSh4g3d/Gemini-Generated-Image-2026-04-03-at-14-33-12.png"
+            },
+            {
+                id: 3,
+                name: "Éclat Royal – Bracelet en argent 925 avec pierre carrée halo",
+                price: 189,
+                desc: "Pierre centrale avec halo",
+                img: "https://i.postimg.cc/Mvz19vYH/Gemini-Generated-Image-2026-04-03-at-14-33-12.png"
+            },
+            {
+                id: 4,
+                name: "Bracelet \"Couronne Royale\" – Argent Sterling 925",
+                price: 200,
+                desc: "Style royal et raffiné",
+                img: "https://i.postimg.cc/SJKJX8rf/Gemini-Generated-Image-2026-04-03-at-14-33-12.png"
+            },
+            {
+                id: 5,
+                name: "Bracelet \"Infini Éternel\" en Argent 925",
+                price: 220,
+                desc: "Symbole d'amour infini",
+                img: "https://i.postimg.cc/crJrKYmc/Gemini-Generated-Image-2026-04-03-at-14-33-12.png"
+            },
+            {
+                id: 6,
+                name: "Bracelet \"Flocon de Neige\" Multicercle — Argent Sterling S925",
+                price: 300,
+                desc: "Design délicat et hivernal",
+                img: "https://i.postimg.cc/B8CRr8Kv/Gemini-Generated-Image-2026-04-03-at-14-33-12.png"
+            },
+            {
+                id: 7,
+                name: "Bracelet \"Clou de Lumière\" en Argent 925",
+                price: 200,
+                desc: "Élégance minimaliste",
+                img: "https://i.postimg.cc/ppdp98Zk/Gemini-Generated-Image-2026-04-03-at-14-33-12.png"
+            },
+            {
+                id: 8,
+                name: "Bracelet \"Amulettes de Chance\" Multi-Breloques — Argent S925",
+                price: 270,
+                desc: "Charms porte-bonheur",
+                img: "https://i.postimg.cc/rDw413Nj/Gemini-Generated-Image-2026-04-03-at-14-33-12.png"
+            },
+            {
+                id: 9,
+                name: "Bracelet \"Soleils d'Orient\" Multicharmes — Argent S925",
+                price: 240,
+                desc: "Inspiration orientale",
+                img: "https://i.postimg.cc/kDhBbs5d/Gemini-Generated-Image-2026-04-03-at-14-33-12.png"
+            },
+            {
+                id: 10,
+                name: "Bracelet Cœur Noir Précieux en Argent 925",
+                price: 230,
+                desc: "Design audacieux",
+                img: "https://i.postimg.cc/kR5shsrN/Gemini-Generated-Image-2026-04-03-at-14-33-12.png"
+            },
+            {
+                id: 11,
+                name: "Bracelet \"Pulsation Verte\" – Argent Sterling 925",
+                price: 230,
+                desc: "Pierre verte éclatante",
+                img: "https://i.postimg.cc/VdNdSMR7/Gemini-Generated-Image-2026-04-03-at-14-33-12.png"
+            },
+            {
+                id: 12,
+                name: "Bracelet \"Splendeur d'Orient\" – Argent Sterling 925",
+                price: 440,
+                desc: "Pièce statement luxueuse",
+                img: "https://i.postimg.cc/TpPpym9C/Gemini-Generated-Image-2026-04-03-at-14-33-12.png"
+            }
+        ];
+
+        let cart = [];
+
+        function renderProducts(filtered = products) {
+            const container = document.getElementById('products-grid');
+            container.innerHTML = '';
+            filtered.forEach(p => {
+                container.innerHTML += `
+                <div class="product-card bg-white rounded-3xl overflow-hidden shadow-sm">
+                    <img src="${p.img}" class="w-full product-img object-cover">
+                    <div class="p-4">
+                        <div class="font-medium text-base leading-tight">${p.name}</div>
+                        <div class="text-xs text-zinc-500 mb-4">${p.desc}</div>
+                        <div class="flex justify-between items-center">
+                            <span class="font-bold text-lg">${p.price} DH</span>
+                            <button onclick="addToCart(${p.id})" 
+                                    class="bg-zinc-800 hover:bg-black text-white px-6 py-2.5 rounded-2xl text-sm font-medium">
+                                Ajouter
+                            </button>
+                        </div>
+                    </div>
+                </div>`;
+            });
+        }
+
+        function addToCart(id) {
+            const product = products.find(p => p.id === id);
+            const existing = cart.find(i => i.id === id);
+            if (existing) existing.quantity = (existing.quantity || 1) + 1;
+            else cart.push({...product, quantity: 1});
+            updateCartCount();
+            showToast(product.name + " ajouté au panier");
+        }
+
+        function updateCartCount() {
+            const count = cart.reduce((a, c) => a + (c.quantity || 1), 0);
+            document.getElementById('cart-count').textContent = count;
+        }
+
+        function showToast(msg) {
+            const toast = document.createElement('div');
+            toast.style.cssText = 'position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#444;color:white;padding:14px 24px;border-radius:9999px;z-index:10000;';
+            toast.textContent = msg;
+            document.body.appendChild(toast);
+            setTimeout(() => toast.remove(), 2500);
+        }
+
+        function showCart() { 
+            document.getElementById('cart-modal').classList.remove('hidden'); 
+            renderCart(); 
+        }
+
+        function hideCart() { 
+            document.getElementById('cart-modal').classList.add('hidden'); 
+        }
+
+        function renderCart() {
+            let html = '', total = 0;
+            const container = document.getElementById('cart-items');
+
+            if (cart.length === 0) {
+                container.innerHTML = `<p class="text-center py-12 text-zinc-400">Votre panier est vide</p>`;
+                document.getElementById('cart-total').textContent = '0 DH';
+                return;
+            }
+
+            cart.forEach((item, i) => {
+                const itemTotal = item.price * (item.quantity || 1);
+                total += itemTotal;
+                html += `
+                <div class="flex gap-4">
+                    <img src="${item.img}" class="w-20 h-20 object-cover rounded-2xl">
+                    <div class="flex-1">
+                        <div class="font-medium">${item.name}</div>
+                        <div class="text-sm text-zinc-500">${itemTotal} DH</div>
+                        <div class="flex gap-3 mt-3">
+                            <button onclick="changeQty(${i}, -1)" class="w-8 h-8 border rounded-full">-</button>
+                            <span>${item.quantity || 1}</span>
+                            <button onclick="changeQty(${i}, 1)" class="w-8 h-8 border rounded-full">+</button>
+                            <button onclick="removeItem(${i})" class="ml-auto text-red-500 text-sm">Supprimer</button>
+                        </div>
+                    </div>
+                </div>`;
+            });
+
+            container.innerHTML = html;
+            document.getElementById('cart-total').textContent = total + ' DH';
+        }
+
+        function changeQty(i, delta) {
+            cart[i].quantity = Math.max(1, (cart[i].quantity || 1) + delta);
+            renderCart();
+            updateCartCount();
+        }
+
+        function removeItem(i) {
+            cart.splice(i, 1);
+            renderCart();
+            updateCartCount();
+        }
+
+        function sendOrderToWhatsApp() {
+            if (cart.length === 0) return;
+
+            let message = "🛍️ *Nouvelle Commande - Brillance Châtre*%0A%0A";
+            let total = 0;
+
+            cart.forEach(item => {
+                const itemTotal = item.price * (item.quantity || 1);
+                total += itemTotal;
+                message += `*${item.name}*%0A`;
+                message += `Quantité: ${item.quantity || 1} × ${item.price} DH%0A`;
+                message += `Sous-total: ${itemTotal} DH%0A%0A`;
+            });
+
+            message += `*Total: ${total} DH*%0A%0A`;
+            message += "Veuillez confirmer ma commande. Merci ! 🙏";
+
+            const phoneNumber = "212720114319";
+            const whatsappURL = `https://wa.me/${phoneNumber}?text=${message}`;
+
+            hideCart();
+            window.open(whatsappURL, '_blank');
+
+            setTimeout(() => {
+                cart = [];
+                updateCartCount();
+            }, 1500);
+        }
+
+        function filterProducts() {
+            const q = document.getElementById('search-input').value.toLowerCase();
+            const filtered = products.filter(p => 
+                p.name.toLowerCase().includes(q) || p.desc.toLowerCase().includes(q)
+            );
+            renderProducts(filtered);
+        }
+
+        function toggleMobileMenu() {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        }
+
+        function navigateTo(id) {
+            document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+            if (window.innerWidth < 768) toggleMobileMenu();
+        }
+
+        function showContact() {
+            alert("📍 Brillance Châtre - Casablanca\nWhatsApp: +212 720 114 319");
+        }
+
+        // Initialize
+        window.onload = () => {
+            renderProducts();
+        };
+    </script>
+</body>
+</html>
